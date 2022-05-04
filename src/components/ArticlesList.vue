@@ -17,22 +17,23 @@
         <td>{{ article.currency }}</td>
         <td>{{ article.brand }}</td>
         <td>
-        <router-link :to="{ name: 'modify', params: { id: article.id } }">
-          <button>Modify</button>
-        </router-link>
-      </td>
-      <td>
-        <router-link :to="{ name: 'delete', params: { id: article.id } }">
-          <button>Delete</button>
-        </router-link>
-      </td>
+          <router-link :to="{ name: 'modify', params: { id: article.id } }">
+            <transition name="fade">
+              <button @click="show = !show">Modify</button>
+            </transition>
+          </router-link>
+        </td>
+        <td>
+          <router-link :to="{ name: 'delete', params: { id: article.id } }">
+            <button>Delete</button>
+          </router-link>
+        </td>
       </tr>
     </table>
   </div>
 </template>
 
 <script setup>
-
 import { useArticlesStore } from "../stores/articles";
 import { onMounted } from "@vue/runtime-core";
 import router from "@/router";
@@ -49,19 +50,21 @@ async function fetchArticles() {
     .then((response) => response.json())
     .catch((e) => e);
   console.log(articles.articles);
-  
+
   if (articles.articles instanceof Array) {
-      articleStore.$state.articles = articles.articles;
+    articleStore.$state.articles = articles.articles;
   }
 }
 
 async function deleteArticles() {
-  let articles = await axios.delete("http://127.0.0.1:90/articles")
+  let articles = await axios
+    .delete("http://127.0.0.1:90/articles")
     .then((response) => response.json())
     .catch((e) => e);
   console.log(articles.articles);
-  
 }
 </script>
 
-<style></style>
+<style>
+
+</style>

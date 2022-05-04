@@ -20,19 +20,23 @@ const router = createRouter({
     {
       path: '/modify/:id',
       name: 'modify',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../components/ModifyArticle.vue')
     },
     {
       path: '/delete/:id',
       name: 'delete',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../components/ModifyArticle.vue')
-    }
+    },
+    {
+      path: '/inscription',
+      name: 'inscription',
+      component: () => import('../views/InscriptionView.vue')
+    },
+    {
+      path: '/upload',
+      name: 'upload',
+      component: () => import('../views/UploadView.vue')
+    },
   ]
 })
 
